@@ -31,9 +31,9 @@
             this.lblName = new System.Windows.Forms.Label();
             this.lblSize = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.cobSize = new System.Windows.Forms.ComboBox();
+            this.txtPrice = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -68,27 +68,34 @@
             this.lblPrice.TabIndex = 2;
             this.lblPrice.Text = "Price";
             // 
-            // textBox1
+            // txtName
             // 
-            this.textBox1.Location = new System.Drawing.Point(65, 20);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(192, 20);
-            this.textBox1.TabIndex = 3;
+            this.txtName.Location = new System.Drawing.Point(65, 20);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(192, 20);
+            this.txtName.TabIndex = 3;
             // 
-            // comboBox1
+            // cobSize
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(65, 56);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(192, 21);
-            this.comboBox1.TabIndex = 4;
+            this.cobSize.BackColor = System.Drawing.SystemColors.Window;
+            this.cobSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobSize.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.cobSize.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.cobSize.Items.AddRange(new object[] {
+            "S",
+            "M",
+            "L"});
+            this.cobSize.Location = new System.Drawing.Point(65, 56);
+            this.cobSize.Name = "cobSize";
+            this.cobSize.Size = new System.Drawing.Size(192, 21);
+            this.cobSize.TabIndex = 4;
             // 
-            // textBox2
+            // txtPrice
             // 
-            this.textBox2.Location = new System.Drawing.Point(65, 93);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(192, 20);
-            this.textBox2.TabIndex = 5;
+            this.txtPrice.Location = new System.Drawing.Point(65, 93);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(192, 20);
+            this.txtPrice.TabIndex = 5;
             // 
             // btnAdd
             // 
@@ -115,9 +122,9 @@
             this.ClientSize = new System.Drawing.Size(297, 174);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtPrice);
+            this.Controls.Add(this.cobSize);
+            this.Controls.Add(this.txtName);
             this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.lblSize);
             this.Controls.Add(this.lblName);
@@ -133,9 +140,9 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblSize;
         private System.Windows.Forms.Label lblPrice;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.ComboBox cobSize;
+        private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnCancel;
     }

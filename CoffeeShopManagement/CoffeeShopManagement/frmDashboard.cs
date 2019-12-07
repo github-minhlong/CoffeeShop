@@ -12,9 +12,39 @@ namespace CoffeeShopManagement
 {
     public partial class frmDashboard : Form
     {
+        private ProductsManagement Business;
         public frmDashboard()
         {
             InitializeComponent();
+            this.Business = new ProductsManagement();
+            this.btnAddProduct.Click += BtnAddProduct_Click;
+            this.Load += FrmDashboard_Load;
+            this.btnUpdateProduct.Click += BtnUpdateProduct_Click;            
+        }      
+
+        private void BtnUpdateProduct_Click(object sender, EventArgs e)
+        {
+            var @product = (Product)this.grdProducts.SelectedRows[0].DataBoundItem;
+            var form = new frmUpdate(@product.id);
+            form.ShowDialog();
+            this.ViewAllProducts();
         }
+
+        private void FrmDashboard_Load(object sender, EventArgs e)
+        {
+            this.ViewAllProducts();          
+        }
+
+        private void BtnAddProduct_Click(object sender, EventArgs e)
+        {
+            var form = new frmAddProduct();
+            form.ShowDialog();
+            this.ViewAllProducts();
+        }
+        void ViewAllProducts()
+        {
+            var load = this.Business.GetProducts();
+            this.grdProducts.DataSource = load;
+        }       
     }
 }
