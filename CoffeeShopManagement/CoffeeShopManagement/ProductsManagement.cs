@@ -46,5 +46,27 @@ namespace CoffeeShopManagement
             var db = new MyDatabaseEntities();
             return db.Products.Find(id);
         }
+        public bill[] GetBills()
+        {
+            var db = new MyDatabaseEntities();
+            return db.bills.ToArray();
+        }
+        public bill GetBill(int id)
+        {
+            var db = new MyDatabaseEntities();
+            return db.bills.Find(id);
+        }
+        public void AddBill(string name, string size, int price, int quantity)
+        {
+            var addBill = new bill();
+            addBill.name = name;
+            addBill.size = size;
+            addBill.price = price;
+            addBill.quantity = quantity;
+
+            var db = new MyDatabaseEntities();
+            db.bills.Add(addBill);
+            db.SaveChanges();
+        }
     }
 }

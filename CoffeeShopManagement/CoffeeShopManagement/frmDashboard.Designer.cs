@@ -30,7 +30,9 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.btnAddProduct = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnUpdateProduct = new System.Windows.Forms.ToolStripMenuItem();
             this.btnViewAllSales = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnSell = new System.Windows.Forms.ToolStripMenuItem();
             this.grbProducts = new System.Windows.Forms.GroupBox();
             this.grdProducts = new System.Windows.Forms.DataGridView();
             this.grbBill = new System.Windows.Forms.GroupBox();
@@ -38,8 +40,6 @@
             this.lblTotal = new System.Windows.Forms.Label();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.btnCheckOut = new System.Windows.Forms.Button();
-            this.btnUpdateProduct = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnSell = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.grbProducts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdProducts)).BeginInit();
@@ -66,11 +66,23 @@
             this.btnAddProduct.Size = new System.Drawing.Size(86, 20);
             this.btnAddProduct.Text = "Add product";
             // 
+            // btnUpdateProduct
+            // 
+            this.btnUpdateProduct.Name = "btnUpdateProduct";
+            this.btnUpdateProduct.Size = new System.Drawing.Size(102, 20);
+            this.btnUpdateProduct.Text = "Update Product";
+            // 
             // btnViewAllSales
             // 
             this.btnViewAllSales.Name = "btnViewAllSales";
             this.btnViewAllSales.Size = new System.Drawing.Size(90, 20);
             this.btnViewAllSales.Text = "View All Sales";
+            // 
+            // btnSell
+            // 
+            this.btnSell.Name = "btnSell";
+            this.btnSell.Size = new System.Drawing.Size(37, 20);
+            this.btnSell.Text = "Sell";
             // 
             // grbProducts
             // 
@@ -114,6 +126,7 @@
             this.grdBill.Location = new System.Drawing.Point(3, 16);
             this.grdBill.Name = "grdBill";
             this.grdBill.ReadOnly = true;
+            this.grdBill.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdBill.Size = new System.Drawing.Size(290, 211);
             this.grdBill.TabIndex = 0;
             // 
@@ -142,18 +155,6 @@
             this.btnCheckOut.TabIndex = 4;
             this.btnCheckOut.Text = "Check out";
             this.btnCheckOut.UseVisualStyleBackColor = true;
-            // 
-            // btnUpdateProduct
-            // 
-            this.btnUpdateProduct.Name = "btnUpdateProduct";
-            this.btnUpdateProduct.Size = new System.Drawing.Size(102, 20);
-            this.btnUpdateProduct.Text = "Update Product";
-            // 
-            // btnSell
-            // 
-            this.btnSell.Name = "btnSell";
-            this.btnSell.Size = new System.Drawing.Size(37, 20);
-            this.btnSell.Text = "Sell";
             // 
             // frmDashboard
             // 

@@ -19,8 +19,17 @@ namespace CoffeeShopManagement
             this.Business = new ProductsManagement();
             this.btnAddProduct.Click += BtnAddProduct_Click;
             this.Load += FrmDashboard_Load;
-            this.btnUpdateProduct.Click += BtnUpdateProduct_Click;            
-        }      
+            this.btnUpdateProduct.Click += BtnUpdateProduct_Click;
+            this.btnSell.Click += BtnSell_Click;           
+        }
+
+        private void BtnSell_Click(object sender, EventArgs e)
+        {
+            var sell = (Product)this.grdProducts.SelectedRows[0].DataBoundItem;
+            var form = new frmSell(sell.id);
+            form.ShowDialog();
+            this.LoadBill();
+        }
 
         private void BtnUpdateProduct_Click(object sender, EventArgs e)
         {
@@ -32,7 +41,8 @@ namespace CoffeeShopManagement
 
         private void FrmDashboard_Load(object sender, EventArgs e)
         {
-            this.ViewAllProducts();          
+            this.ViewAllProducts();
+            this.LoadBill();
         }
 
         private void BtnAddProduct_Click(object sender, EventArgs e)
@@ -45,6 +55,11 @@ namespace CoffeeShopManagement
         {
             var load = this.Business.GetProducts();
             this.grdProducts.DataSource = load;
-        }       
+        }
+        void LoadBill()
+        {
+            var load = this.Business.GetBills();
+            this.grdBill.DataSource = load;
+        }
     }
 }

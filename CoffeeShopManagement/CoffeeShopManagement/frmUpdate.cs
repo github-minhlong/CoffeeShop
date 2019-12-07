@@ -34,9 +34,9 @@ namespace CoffeeShopManagement
 
         private void BtnUpdate_Click(object sender, EventArgs e)
         {
-            var name = txtName.Text;
-            var size = cobSize.Text;
-            var price = int.Parse(txtPrice.Text);
+            var name = this.txtName.Text;
+            var size = this.cobSize.Text;
+            var price = int.Parse(this.txtPrice.Text);
             this.Business.EditProduct(ProductId, name, size, price);
             MessageBox.Show("Update successfully");
             this.Close();
