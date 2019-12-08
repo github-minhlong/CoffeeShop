@@ -20,7 +20,14 @@ namespace CoffeeShopManagement
             this.btnAddProduct.Click += BtnAddProduct_Click;
             this.Load += FrmDashboard_Load;
             this.btnUpdateProduct.Click += BtnUpdateProduct_Click;
-            this.btnSell.Click += BtnSell_Click;           
+            this.btnSell.Click += BtnSell_Click;
+            this.txtTotal.DoubleClick += TxtTotal_DoubleClick;
+        }
+
+        private void TxtTotal_DoubleClick(object sender, EventArgs e)
+        {
+            int total = TotalBill();
+            txtTotal.Text = total.ToString();
         }
 
         private void BtnSell_Click(object sender, EventArgs e)
@@ -60,6 +67,16 @@ namespace CoffeeShopManagement
         {
             var load = this.Business.GetBills();
             this.grdBill.DataSource = load;
+        }
+        int TotalBill()
+        {
+            int Total = 0;
+            for(int i = 0; i<grdBill.Rows.Count; i++)
+            {
+                int n = int.Parse(grdBill.Rows[i].Cells["price"].Value.ToString());
+                Total += n;
+            }
+            return Total;
         }
     }
 }
