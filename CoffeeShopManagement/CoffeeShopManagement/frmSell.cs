@@ -30,7 +30,7 @@ namespace CoffeeShopManagement
             var size = this.txtSize.Text;
             var price = TotalPrice();
             var quantity = int.Parse(this.txtQuantity.Text);
-            this.Business.AddBill(name, size, price, quantity);
+            this.Business.AddBill(name, size, price, quantity);           
             this.Close();
         }
 

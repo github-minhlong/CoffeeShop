@@ -40,6 +40,7 @@
             this.lblTotal = new System.Windows.Forms.Label();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.btnCheckOut = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.grbProducts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdProducts)).BeginInit();
@@ -52,6 +53,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnAddProduct,
             this.btnUpdateProduct,
+            this.btnDelete,
             this.btnViewAllSales,
             this.btnSell});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -147,6 +149,7 @@
             this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(115, 20);
             this.txtTotal.TabIndex = 3;
+            this.txtTotal.Text = "0";
             // 
             // btnCheckOut
             // 
@@ -156,6 +159,12 @@
             this.btnCheckOut.TabIndex = 4;
             this.btnCheckOut.Text = "Check out";
             this.btnCheckOut.UseVisualStyleBackColor = true;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(97, 20);
+            this.btnDelete.Text = "Delete Product";
             // 
             // frmDashboard
             // 
@@ -196,5 +205,6 @@
         private System.Windows.Forms.Button btnCheckOut;
         private System.Windows.Forms.ToolStripMenuItem btnUpdateProduct;
         private System.Windows.Forms.ToolStripMenuItem btnSell;
+        private System.Windows.Forms.ToolStripMenuItem btnDelete;
     }
 }

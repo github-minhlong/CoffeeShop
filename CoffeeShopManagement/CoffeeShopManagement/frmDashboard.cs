@@ -22,6 +22,65 @@ namespace CoffeeShopManagement
             this.btnUpdateProduct.Click += BtnUpdateProduct_Click;
             this.btnSell.Click += BtnSell_Click;
             this.txtTotal.DoubleClick += TxtTotal_DoubleClick;
+            this.btnDelete.Click += BtnDelete_Click;
+            this.grdBill.DoubleClick += GrdBill_DoubleClick;
+            this.btnCheckOut.Click += BtnCheckOut_Click;
+            this.btnViewAllSales.Click += BtnViewAllSales_Click;
+        }
+
+        private void BtnViewAllSales_Click(object sender, EventArgs e)
+        {
+            var form = new frmAllSales();
+            form.Show();
+        }
+
+        private void BtnCheckOut_Click(object sender, EventArgs e)
+        {
+            for(int n = 0; n < grdBill.Rows.Count; n++)
+            {
+                var name = this.grdBill.Rows[n].Cells["name"].Value.ToString();
+                var size = this.grdBill.Rows[n].Cells["size"].Value.ToString();
+                var price = int.Parse(this.grdBill.Rows[n].Cells["price"].Value.ToString());
+                var quantity = int.Parse(this.grdBill.Rows[n].Cells["quantity"].Value.ToString());
+                this.Business.AddHistory(name, size, price, quantity);
+            }
+            if (int.Parse(txtTotal.Text) > 0)
+            {
+                for (int i = 0; i < grdBill.Rows.Count; i++)
+                {
+                    var bills = (bill)this.grdBill.Rows[i].DataBoundItem;
+                    this.Business.DeleteProductsInBill(bills.id);
+                }
+                this.LoadBill();
+            }
+            else
+            {
+                MessageBox.Show("Can't pay!");
+            }
+        }
+
+        private void GrdBill_DoubleClick(object sender, EventArgs e)
+        {
+            if(this.grdBill.SelectedRows.Count == 1)
+            {
+                var bills = (bill)this.grdBill.SelectedRows[0].DataBoundItem;
+                this.Business.DeleteProductsInBill(bills.id);
+                this.LoadBill();
+            }
+        }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            if(this.grdProducts.SelectedRows.Count == 1)
+            {
+                if(MessageBox.Show("Do you want to delete this?", "Confirm", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    var products = (Product)this.grdProducts.SelectedRows[0].DataBoundItem;
+                    this.Business.DeleteProduct(products.id);
+                    MessageBox.Show("Delete successfully");
+                    this.ViewAllProducts();
+                }
+            }
         }
 
         private void TxtTotal_DoubleClick(object sender, EventArgs e)
@@ -32,7 +91,7 @@ namespace CoffeeShopManagement
 
         private void BtnSell_Click(object sender, EventArgs e)
         {
-            var sell = (Product)this.grdProducts.SelectedRows[0].DataBoundItem;
+            var sell = (Product)this.grdProducts.SelectedRows[0].DataBoundItem;            
             var form = new frmSell(sell.id);
             form.ShowDialog();
             this.LoadBill();

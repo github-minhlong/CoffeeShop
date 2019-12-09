@@ -68,5 +68,38 @@ namespace CoffeeShopManagement
             db.bills.Add(addBill);
             db.SaveChanges();
         }
+        public void DeleteProductsInBill(int id)
+        {
+            var db = new MyDatabaseEntities();
+            var deleteBill = db.bills.Find(id);
+            db.bills.Remove(deleteBill);
+            db.SaveChanges();
+        }
+        public history[] GetHistories()
+        {
+            var db = new MyDatabaseEntities();
+            return db.histories.ToArray();
+        }
+        public void AddHistory(string name, string size, int price, int quantity)
+        {
+            var addHistory = new history();
+            DateTime now = DateTime.Now;
+            addHistory.name = name;
+            addHistory.size = size;
+            addHistory.price = price;
+            addHistory.quantity = quantity;
+            addHistory.dateofsales = now;
+
+            var db = new MyDatabaseEntities();
+            db.histories.Add(addHistory);
+            db.SaveChanges();
+        }
+        public void DeleteHistory(int id)
+        {
+            var db = new MyDatabaseEntities();
+            var deleteHistory = db.histories.Find(id);
+            db.histories.Remove(deleteHistory);
+            db.SaveChanges();
+        }
     }
 }
