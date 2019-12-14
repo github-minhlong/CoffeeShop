@@ -12,7 +12,7 @@ namespace CoffeeShopManagement
     using System;
     using System.Collections.Generic;
     
-    public partial class bill
+    public partial class order
     {
         public int id { get; set; }
         public string name { get; set; }

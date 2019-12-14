@@ -26,7 +26,7 @@ namespace CoffeeShopManagement
         }
     
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<bill> bills { get; set; }
+        public virtual DbSet<order> bills { get; set; }
         public virtual DbSet<history> histories { get; set; }
     }
 }

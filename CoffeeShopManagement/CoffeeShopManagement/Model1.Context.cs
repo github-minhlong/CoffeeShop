@@ -25,8 +25,8 @@ namespace CoffeeShopManagement
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<bill> bills { get; set; }
         public virtual DbSet<history> histories { get; set; }
+        public virtual DbSet<order> orders { get; set; }
         public virtual DbSet<Product> Products { get; set; }
     }
 }

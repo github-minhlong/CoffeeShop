@@ -36,7 +36,7 @@
             this.btnSell = new System.Windows.Forms.ToolStripMenuItem();
             this.grbProducts = new System.Windows.Forms.GroupBox();
             this.grdProducts = new System.Windows.Forms.DataGridView();
-            this.grbBill = new System.Windows.Forms.GroupBox();
+            this.grbOrder = new System.Windows.Forms.GroupBox();
             this.grdBill = new System.Windows.Forms.DataGridView();
             this.lblTotal = new System.Windows.Forms.Label();
             this.txtTotal = new System.Windows.Forms.TextBox();
@@ -44,7 +44,7 @@
             this.menuStrip1.SuspendLayout();
             this.grbProducts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdProducts)).BeginInit();
-            this.grbBill.SuspendLayout();
+            this.grbOrder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdBill)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,15 +115,15 @@
             this.grdProducts.Size = new System.Drawing.Size(431, 419);
             this.grdProducts.TabIndex = 0;
             // 
-            // grbBill
+            // grbOrder
             // 
-            this.grbBill.Controls.Add(this.grdBill);
-            this.grbBill.Location = new System.Drawing.Point(506, 27);
-            this.grbBill.Name = "grbBill";
-            this.grbBill.Size = new System.Drawing.Size(551, 393);
-            this.grbBill.TabIndex = 2;
-            this.grbBill.TabStop = false;
-            this.grbBill.Text = "Bill";
+            this.grbOrder.Controls.Add(this.grdBill);
+            this.grbOrder.Location = new System.Drawing.Point(506, 27);
+            this.grbOrder.Name = "grbOrder";
+            this.grbOrder.Size = new System.Drawing.Size(551, 393);
+            this.grbOrder.TabIndex = 2;
+            this.grbOrder.TabStop = false;
+            this.grbOrder.Text = "Order";
             // 
             // grdBill
             // 
@@ -174,7 +174,7 @@
             this.Controls.Add(this.btnCheckOut);
             this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.lblTotal);
-            this.Controls.Add(this.grbBill);
+            this.Controls.Add(this.grbOrder);
             this.Controls.Add(this.grbProducts);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -184,7 +184,7 @@
             this.menuStrip1.PerformLayout();
             this.grbProducts.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdProducts)).EndInit();
-            this.grbBill.ResumeLayout(false);
+            this.grbOrder.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdBill)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -198,7 +198,7 @@
         private System.Windows.Forms.ToolStripMenuItem btnViewAllSales;
         private System.Windows.Forms.GroupBox grbProducts;
         private System.Windows.Forms.DataGridView grdProducts;
-        private System.Windows.Forms.GroupBox grbBill;
+        private System.Windows.Forms.GroupBox grbOrder;
         private System.Windows.Forms.DataGridView grdBill;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.TextBox txtTotal;

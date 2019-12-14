@@ -48,8 +48,8 @@ namespace CoffeeShopManagement
             {
                 for (int i = 0; i < grdBill.Rows.Count; i++)
                 {
-                    var bills = (bill)this.grdBill.Rows[i].DataBoundItem;
-                    this.Business.DeleteProductsInBill(bills.id);
+                    var orders = (order)this.grdBill.Rows[i].DataBoundItem;
+                    this.Business.DeleteProductsInBill(orders.id);
                 }
                 this.LoadBill();
             }
@@ -63,8 +63,8 @@ namespace CoffeeShopManagement
         {
             if(this.grdBill.SelectedRows.Count == 1)
             {
-                var bills = (bill)this.grdBill.SelectedRows[0].DataBoundItem;
-                this.Business.DeleteProductsInBill(bills.id);
+                var orders = (order)this.grdBill.SelectedRows[0].DataBoundItem;
+                this.Business.DeleteProductsInBill(orders.id);
                 this.LoadBill();
             }
         }
