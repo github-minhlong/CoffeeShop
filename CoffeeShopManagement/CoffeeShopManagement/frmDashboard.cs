@@ -49,9 +49,9 @@ namespace CoffeeShopManagement
                 for (int i = 0; i < grdOrder.Rows.Count; i++)
                 {
                     var orders = (order)this.grdOrder.Rows[i].DataBoundItem;
-                    this.Business.DeleteProductsInBill(orders.id);
+                    this.Business.DeleteProductsOrder(orders.id);
                 }
-                this.LoadBill();
+                this.LoadOrder();
             }
             else
             {
@@ -64,8 +64,8 @@ namespace CoffeeShopManagement
             if(this.grdOrder.SelectedRows.Count == 1)
             {
                 var orders = (order)this.grdOrder.SelectedRows[0].DataBoundItem;
-                this.Business.DeleteProductsInBill(orders.id);
-                this.LoadBill();
+                this.Business.DeleteProductsOrder(orders.id);
+                this.LoadOrder();
             }
         }
 
@@ -85,7 +85,7 @@ namespace CoffeeShopManagement
 
         private void TxtTotal_DoubleClick(object sender, EventArgs e)
         {
-            int total = TotalBill();
+            int total = TotalOrder();
             txtTotal.Text = total.ToString();
         }
 
@@ -94,7 +94,7 @@ namespace CoffeeShopManagement
             var sell = (Product)this.grdProducts.SelectedRows[0].DataBoundItem;            
             var form = new frmSell(sell.id);
             form.ShowDialog();
-            this.LoadBill();
+            this.LoadOrder();
         }
 
         private void BtnUpdateProduct_Click(object sender, EventArgs e)
@@ -108,7 +108,7 @@ namespace CoffeeShopManagement
         private void FrmDashboard_Load(object sender, EventArgs e)
         {
             this.ViewAllProducts();
-            this.LoadBill();
+            this.LoadOrder();
         }
 
         private void BtnAddProduct_Click(object sender, EventArgs e)
@@ -122,12 +122,12 @@ namespace CoffeeShopManagement
             var load = this.Business.GetProducts();
             this.grdProducts.DataSource = load;
         }
-        void LoadBill()
+        void LoadOrder()
         {
-            var load = this.Business.GetBills();
+            var load = this.Business.GetOrders();
             this.grdOrder.DataSource = load;
         }
-        int TotalBill()
+        int TotalOrder()
         {
             int Total = 0;
             for(int i = 0; i<grdOrder.Rows.Count; i++)

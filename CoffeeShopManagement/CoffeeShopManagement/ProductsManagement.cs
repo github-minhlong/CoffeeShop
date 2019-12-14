@@ -46,33 +46,33 @@ namespace CoffeeShopManagement
             var db = new DataEntities();
             return db.Products.Find(id);
         }
-        public order[] GetBills()
+        public order[] GetOrders()
         {
             var db = new DataEntities();
             return db.orders.ToArray();
         }
-        public order GetBill(int id)
+        public order GetOrder(int id)
         {
             var db = new DataEntities();
             return db.orders.Find(id);
         }
-        public void AddBill(string name, string size, int price, int quantity)
+        public void AddOrder(string name, string size, int price, int quantity)
         {
-            var addBill = new order();
-            addBill.name = name;
-            addBill.size = size;
-            addBill.price = price;
-            addBill.quantity = quantity;
+            var addOrder = new order();
+            addOrder.name = name;
+            addOrder.size = size;
+            addOrder.price = price;
+            addOrder.quantity = quantity;
 
             var db = new DataEntities();
-            db.orders.Add(addBill);
+            db.orders.Add(addOrder);
             db.SaveChanges();
         }
-        public void DeleteProductsInBill(int id)
+        public void DeleteProductsOrder(int id)
         {
             var db = new DataEntities();
-            var deleteBill = db.orders.Find(id);
-            db.orders.Remove(deleteBill);
+            var deleteOrder = db.orders.Find(id);
+            db.orders.Remove(deleteOrder);
             db.SaveChanges();
         }
         public history[] GetHistories()
