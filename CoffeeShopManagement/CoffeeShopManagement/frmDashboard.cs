@@ -23,7 +23,7 @@ namespace CoffeeShopManagement
             this.btnSell.Click += BtnSell_Click;
             this.txtTotal.DoubleClick += TxtTotal_DoubleClick;
             this.btnDelete.Click += BtnDelete_Click;
-            this.grdBill.DoubleClick += GrdBill_DoubleClick;
+            this.grdOrder.DoubleClick += GrdBill_DoubleClick;
             this.btnCheckOut.Click += BtnCheckOut_Click;
             this.btnViewAllSales.Click += BtnViewAllSales_Click;
         }
@@ -36,19 +36,19 @@ namespace CoffeeShopManagement
 
         private void BtnCheckOut_Click(object sender, EventArgs e)
         {
-            for(int n = 0; n < grdBill.Rows.Count; n++)
+            for(int n = 0; n < grdOrder.Rows.Count; n++)
             {
-                var name = this.grdBill.Rows[n].Cells["name"].Value.ToString();
-                var size = this.grdBill.Rows[n].Cells["size"].Value.ToString();
-                var price = int.Parse(this.grdBill.Rows[n].Cells["price"].Value.ToString());
-                var quantity = int.Parse(this.grdBill.Rows[n].Cells["quantity"].Value.ToString());
+                var name = this.grdOrder.Rows[n].Cells["name"].Value.ToString();
+                var size = this.grdOrder.Rows[n].Cells["size"].Value.ToString();
+                var price = int.Parse(this.grdOrder.Rows[n].Cells["price"].Value.ToString());
+                var quantity = int.Parse(this.grdOrder.Rows[n].Cells["quantity"].Value.ToString());
                 this.Business.AddHistory(name, size, price, quantity);
             }
             if (int.Parse(txtTotal.Text) > 0)
             {
-                for (int i = 0; i < grdBill.Rows.Count; i++)
+                for (int i = 0; i < grdOrder.Rows.Count; i++)
                 {
-                    var orders = (order)this.grdBill.Rows[i].DataBoundItem;
+                    var orders = (order)this.grdOrder.Rows[i].DataBoundItem;
                     this.Business.DeleteProductsInBill(orders.id);
                 }
                 this.LoadBill();
@@ -61,9 +61,9 @@ namespace CoffeeShopManagement
 
         private void GrdBill_DoubleClick(object sender, EventArgs e)
         {
-            if(this.grdBill.SelectedRows.Count == 1)
+            if(this.grdOrder.SelectedRows.Count == 1)
             {
-                var orders = (order)this.grdBill.SelectedRows[0].DataBoundItem;
+                var orders = (order)this.grdOrder.SelectedRows[0].DataBoundItem;
                 this.Business.DeleteProductsInBill(orders.id);
                 this.LoadBill();
             }
@@ -125,14 +125,14 @@ namespace CoffeeShopManagement
         void LoadBill()
         {
             var load = this.Business.GetBills();
-            this.grdBill.DataSource = load;
+            this.grdOrder.DataSource = load;
         }
         int TotalBill()
         {
             int Total = 0;
-            for(int i = 0; i<grdBill.Rows.Count; i++)
+            for(int i = 0; i<grdOrder.Rows.Count; i++)
             {
-                int n = int.Parse(grdBill.Rows[i].Cells["price"].Value.ToString());
+                int n = int.Parse(grdOrder.Rows[i].Cells["price"].Value.ToString());
                 Total += n;
             }
             return Total;

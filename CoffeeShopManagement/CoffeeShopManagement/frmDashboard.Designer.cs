@@ -37,7 +37,7 @@
             this.grbProducts = new System.Windows.Forms.GroupBox();
             this.grdProducts = new System.Windows.Forms.DataGridView();
             this.grbOrder = new System.Windows.Forms.GroupBox();
-            this.grdBill = new System.Windows.Forms.DataGridView();
+            this.grdOrder = new System.Windows.Forms.DataGridView();
             this.lblTotal = new System.Windows.Forms.Label();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.btnCheckOut = new System.Windows.Forms.Button();
@@ -45,7 +45,7 @@
             this.grbProducts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdProducts)).BeginInit();
             this.grbOrder.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdBill)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdOrder)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -117,7 +117,7 @@
             // 
             // grbOrder
             // 
-            this.grbOrder.Controls.Add(this.grdBill);
+            this.grbOrder.Controls.Add(this.grdOrder);
             this.grbOrder.Location = new System.Drawing.Point(506, 27);
             this.grbOrder.Name = "grbOrder";
             this.grbOrder.Size = new System.Drawing.Size(551, 393);
@@ -125,18 +125,18 @@
             this.grbOrder.TabStop = false;
             this.grbOrder.Text = "Order";
             // 
-            // grdBill
+            // grdOrder
             // 
-            this.grdBill.AllowUserToAddRows = false;
-            this.grdBill.AllowUserToDeleteRows = false;
-            this.grdBill.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdBill.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdBill.Location = new System.Drawing.Point(3, 16);
-            this.grdBill.Name = "grdBill";
-            this.grdBill.ReadOnly = true;
-            this.grdBill.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdBill.Size = new System.Drawing.Size(545, 374);
-            this.grdBill.TabIndex = 0;
+            this.grdOrder.AllowUserToAddRows = false;
+            this.grdOrder.AllowUserToDeleteRows = false;
+            this.grdOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdOrder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdOrder.Location = new System.Drawing.Point(3, 16);
+            this.grdOrder.Name = "grdOrder";
+            this.grdOrder.ReadOnly = true;
+            this.grdOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grdOrder.Size = new System.Drawing.Size(545, 374);
+            this.grdOrder.TabIndex = 0;
             // 
             // lblTotal
             // 
@@ -185,7 +185,7 @@
             this.grbProducts.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdProducts)).EndInit();
             this.grbOrder.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdBill)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdOrder)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -199,7 +199,7 @@
         private System.Windows.Forms.GroupBox grbProducts;
         private System.Windows.Forms.DataGridView grdProducts;
         private System.Windows.Forms.GroupBox grbOrder;
-        private System.Windows.Forms.DataGridView grdBill;
+        private System.Windows.Forms.DataGridView grdOrder;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.TextBox txtTotal;
         private System.Windows.Forms.Button btnCheckOut;
