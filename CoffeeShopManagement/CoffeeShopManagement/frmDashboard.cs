@@ -35,15 +35,9 @@ namespace CoffeeShopManagement
         }
 
         private void BtnCheckOut_Click(object sender, EventArgs e)
-        {
-            for(int n = 0; n < grdOrder.Rows.Count; n++)
-            {
-                var name = this.grdOrder.Rows[n].Cells["name"].Value.ToString();
-                var size = this.grdOrder.Rows[n].Cells["size"].Value.ToString();
-                var price = int.Parse(this.grdOrder.Rows[n].Cells["price"].Value.ToString());
-                var quantity = int.Parse(this.grdOrder.Rows[n].Cells["quantity"].Value.ToString());
-                this.Business.AddHistory(name, size, price, quantity);
-            }
+        {            
+            this.Business.AddHistory(TotalOrder());
+            OrderToBill();
             if (int.Parse(txtTotal.Text) > 0)
             {
                 for (int i = 0; i < grdOrder.Rows.Count; i++)
@@ -56,7 +50,7 @@ namespace CoffeeShopManagement
             else
             {
                 MessageBox.Show("Can't pay!");
-            }
+            }            
         }
 
         private void GrdBill_DoubleClick(object sender, EventArgs e)
@@ -136,6 +130,17 @@ namespace CoffeeShopManagement
                 Total += n;
             }
             return Total;
+        }        
+        void OrderToBill()
+        {
+            for (int i = 0; i < grdOrder.Rows.Count; i++)
+            {                
+                var name = this.grdOrder.Rows[i].Cells["name"].Value.ToString();
+                var size = this.grdOrder.Rows[i].Cells["size"].Value.ToString();
+                var price = int.Parse(this.grdOrder.Rows[i].Cells["price"].Value.ToString());
+                var quantity = int.Parse(this.grdOrder.Rows[i].Cells["quantity"].Value.ToString());
+                this.Business.AddBills(name, size, price, quantity);
+            }
         }
     }
 }

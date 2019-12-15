@@ -80,19 +80,32 @@ namespace CoffeeShopManagement
             var db = new DataEntities();
             return db.histories.ToArray();
         }
-        public void AddHistory(string name, string size, int price, int quantity)
+        public int AddHistory(int total)
         {
             var addHistory = new history();
-            DateTime now = DateTime.Now;
-            addHistory.name = name;
-            addHistory.size = size;
-            addHistory.price = price;
-            addHistory.quantity = quantity;
+            DateTime now = DateTime.Now;            
             addHistory.dateofsales = now;
+            addHistory.total = total;
 
             var db = new DataEntities();
             db.histories.Add(addHistory);
             db.SaveChanges();
+            return addHistory.id;
+        }
+        public int AddHistory()
+        {
+            var addHistory = new history();
+            DateTime now = DateTime.Now;
+            addHistory.dateofsales = now;
+            var db = new DataEntities();
+            db.histories.Add(addHistory);
+            db.SaveChanges();
+            return addHistory.id;
+        }
+        public int index()
+        {
+            var db = new DataEntities();
+            return db.histories.Count();
         }
         public void DeleteHistory(int id)
         {
@@ -101,5 +114,23 @@ namespace CoffeeShopManagement
             db.histories.Remove(deleteHistory);
             db.SaveChanges();
         }
+        public bill[] GetBills()
+        {
+            var db = new DataEntities();
+            return db.bills.ToArray();
+        }       
+        public void AddBills(string name, string size, int price, int quantity)
+        {           
+            var addBills = new bill();
+            addBills.bill_id = index();
+            addBills.name = name;
+            addBills.size = size;
+            addBills.price = price;
+            addBills.quantity = quantity;
+
+            var db = new DataEntities();
+            db.bills.Add(addBills);
+            db.SaveChanges();
+        }      
     }
 }

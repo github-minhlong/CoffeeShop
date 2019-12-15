@@ -5,16 +5,24 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="bill">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bill_id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="size" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="history">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="size" Type="char" MaxLength="3" Nullable="false" />
-          <Property Name="price" Type="int" Nullable="false" />
-          <Property Name="quantity" Type="int" Nullable="false" />
           <Property Name="dateofsales" Type="datetime" Nullable="false" />
+          <Property Name="total" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="order">
           <Key>
@@ -35,31 +43,42 @@
           <Property Name="Size" Type="char" MaxLength="3" Nullable="false" />
           <Property Name="Price" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK__bill__bill_id__5CD6CB2B">
+          <End Role="history" Type="Self.history" Multiplicity="1" />
+          <End Role="bill" Type="Self.bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="history">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bill">
+              <PropertyRef Name="bill_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DataModelStoreContainer">
+          <EntitySet Name="bill" EntityType="Self.bill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="history" EntityType="Self.history" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="order" EntityType="Self.order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__bill__bill_id__5CD6CB2B" Association="Self.FK__bill__bill_id__5CD6CB2B">
+            <End Role="history" EntitySet="history" />
+            <End Role="bill" EntitySet="bill" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DataEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="histories" EntityType="DataModel.history" />
           <EntitySet Name="orders" EntityType="DataModel.order" />
           <EntitySet Name="Products" EntityType="DataModel.Product" />
-        </EntityContainer>
-        <EntityType Name="history">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="size" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
-          <Property Name="price" Type="Int32" Nullable="false" />
-          <Property Name="quantity" Type="Int32" Nullable="false" />
-          <Property Name="dateofsales" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
+          <EntitySet Name="bills" EntityType="DataModel.bill" />
+          <EntitySet Name="histories" EntityType="DataModel.history" />
+          <AssociationSet Name="FK__bill__bill_id__4AB81AF0" Association="DataModel.FK__bill__bill_id__4AB81AF0">
+            <End Role="history" EntitySet="histories" />
+            <End Role="bill" EntitySet="bills" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="order">
           <Key>
             <PropertyRef Name="id" />
@@ -79,24 +98,45 @@
           <Property Name="Size" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
           <Property Name="Price" Type="Int32" Nullable="false" />
         </EntityType>
-      </Schema>
+        <EntityType Name="bill">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="bill_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="size" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="history" Relationship="DataModel.FK__bill__bill_id__4AB81AF0" FromRole="bill" ToRole="history" />
+        </EntityType>
+        <EntityType Name="history">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dateofsales" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="total" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="bills" Relationship="DataModel.FK__bill__bill_id__4AB81AF0" FromRole="history" ToRole="bill" />
+        </EntityType>
+        <Association Name="FK__bill__bill_id__4AB81AF0">
+          <End Type="DataModel.history" Role="history" Multiplicity="1" />
+          <End Type="DataModel.bill" Role="bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="history">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bill">
+              <PropertyRef Name="bill_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DataModelStoreContainer" CdmEntityContainer="DataEntities">
-          <EntitySetMapping Name="histories">
-            <EntityTypeMapping TypeName="DataModel.history">
-              <MappingFragment StoreEntitySet="history">
-                <ScalarProperty Name="dateofsales" ColumnName="dateofsales" />
-                <ScalarProperty Name="quantity" ColumnName="quantity" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="size" ColumnName="size" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="orders">
             <EntityTypeMapping TypeName="DataModel.order">
               <MappingFragment StoreEntitySet="order">
@@ -118,7 +158,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="bills">
+            <EntityTypeMapping TypeName="DataModel.bill">
+              <MappingFragment StoreEntitySet="bill">
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="bill_id" ColumnName="bill_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="histories">
+            <EntityTypeMapping TypeName="DataModel.history">
+              <MappingFragment StoreEntitySet="history">
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="dateofsales" ColumnName="dateofsales" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

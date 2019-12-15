@@ -12,17 +12,15 @@ namespace CoffeeShopManagement
     using System;
     using System.Collections.Generic;
     
-    public partial class history
+    public partial class bill
     {
-        public history()
-        {
-            this.bills = new HashSet<bill>();
-        }
-    
         public int id { get; set; }
-        public System.DateTime dateofsales { get; set; }
-        public int total { get; set; }
+        public int bill_id { get; set; }
+        public string name { get; set; }
+        public string size { get; set; }
+        public int price { get; set; }
+        public int quantity { get; set; }
     
-        public virtual ICollection<bill> bills { get; set; }
+        public virtual history history { get; set; }
     }
 }
