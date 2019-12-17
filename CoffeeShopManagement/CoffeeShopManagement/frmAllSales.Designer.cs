@@ -54,6 +54,7 @@
             this.grdHistories.Location = new System.Drawing.Point(3, 16);
             this.grdHistories.Name = "grdHistories";
             this.grdHistories.ReadOnly = true;
+            this.grdHistories.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdHistories.Size = new System.Drawing.Size(339, 407);
             this.grdHistories.TabIndex = 0;
             // 

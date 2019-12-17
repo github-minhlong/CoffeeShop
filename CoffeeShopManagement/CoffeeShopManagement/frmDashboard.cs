@@ -31,7 +31,7 @@ namespace CoffeeShopManagement
         private void BtnViewAllSales_Click(object sender, EventArgs e)
         {
             var form = new frmAllSales();
-            form.Show();
+            form.ShowDialog();
         }
 
         private void BtnCheckOut_Click(object sender, EventArgs e)

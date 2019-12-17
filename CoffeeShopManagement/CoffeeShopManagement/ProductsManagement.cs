@@ -102,11 +102,6 @@ namespace CoffeeShopManagement
             db.SaveChanges();
             return addHistory.id;
         }
-        public int index()
-        {
-            var db = new DataEntities();
-            return db.histories.Count();
-        }
         public void DeleteHistory(int id)
         {
             var db = new DataEntities();
@@ -122,13 +117,13 @@ namespace CoffeeShopManagement
         public void AddBills(string name, string size, int price, int quantity)
         {           
             var addBills = new bill();
-            addBills.bill_id = index();
+            var db = new DataEntities();
+            addBills.bill_id = db.histories.Count();
             addBills.name = name;
             addBills.size = size;
             addBills.price = price;
             addBills.quantity = quantity;
 
-            var db = new DataEntities();
             db.bills.Add(addBills);
             db.SaveChanges();
         }      
