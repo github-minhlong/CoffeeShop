@@ -35,9 +35,16 @@ namespace CoffeeShopManagement
         }
 
         private void BtnCheckOut_Click(object sender, EventArgs e)
-        {            
-            this.Business.AddHistory(TotalOrder());
-            OrderToBill();
+        {
+            if (int.Parse(txtTotal.Text) <= 0)
+            {
+                MessageBox.Show("Total must be greater than 0");
+            }
+            else
+            {
+                this.Business.AddHistory(TotalOrder());
+                OrderToBill();
+            }           
             if (int.Parse(txtTotal.Text) > 0)
             {
                 for (int i = 0; i < grdOrder.Rows.Count; i++)
@@ -46,11 +53,7 @@ namespace CoffeeShopManagement
                     this.Business.DeleteProductsOrder(orders.id);
                 }
                 this.LoadOrder();
-            }
-            else
-            {
-                MessageBox.Show("Can't pay!");
-            }            
+            }           
         }
 
         private void GrdBill_DoubleClick(object sender, EventArgs e)
