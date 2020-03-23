@@ -21,7 +21,7 @@ namespace CoffeeShopManagement
             this.Load += FrmDashboard_Load;
             this.btnUpdateProduct.Click += BtnUpdateProduct_Click;
             this.btnSell.Click += BtnSell_Click;
-            this.txtTotal.DoubleClick += TxtTotal_DoubleClick;
+            //this.txtTotal.DoubleClick += TxtTotal_DoubleClick;
             this.btnDelete.Click += BtnDelete_Click;
             this.grdOrder.DoubleClick += GrdBill_DoubleClick;
             this.btnCheckOut.Click += BtnCheckOut_Click;
@@ -80,11 +80,11 @@ namespace CoffeeShopManagement
             }
         }
 
-        private void TxtTotal_DoubleClick(object sender, EventArgs e)
-        {
-            int total = TotalOrder();
-            txtTotal.Text = total.ToString();
-        }
+        //private void TxtTotal_DoubleClick(object sender, EventArgs e)
+        //{
+        //    int total = TotalOrder();
+        //    txtTotal.Text = total.ToString();
+        //}
 
         private void BtnSell_Click(object sender, EventArgs e)
         {
@@ -105,7 +105,7 @@ namespace CoffeeShopManagement
         private void FrmDashboard_Load(object sender, EventArgs e)
         {
             this.ViewAllProducts();
-            this.LoadOrder();
+            this.LoadOrder();          
         }
 
         private void BtnAddProduct_Click(object sender, EventArgs e)
@@ -123,6 +123,8 @@ namespace CoffeeShopManagement
         {
             var load = this.Business.GetOrders();
             this.grdOrder.DataSource = load;
+            int total = TotalOrder();
+            txtTotal.Text = total.ToString();
         }
         int TotalOrder()
         {
